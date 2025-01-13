@@ -13,13 +13,28 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model User{
+  id       Int   @id @default(autoincrement())
+  name      String @db.VarChar(191)
+  email     String @unique @db.VarChar(191)
+  mobile String @unique @db.VarChar(15)
+  password  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  todos Todo[]
+  @@map("users")
+}
+
 model Todo {
   id        Int   @id @default(autoincrement())
+  user_id   Int
   title     String  @db.VarChar(191)
   Description String?
   Status Boolean  @default(false)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  user User @relation(fields: [user_id], references: [id], onDelete: Cascade)
 
   @@map("todos")
 }
