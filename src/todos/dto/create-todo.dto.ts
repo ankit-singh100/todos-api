@@ -11,4 +11,8 @@ export class CreateTodoDto {
   @IsOptional()
   @IsBoolean()
   status: boolean;
+
+  @IsOptional()
+  @IsBoolean()
+  user_id: number;
 }

@@ -1,4 +1,10 @@
-import { IsEmail, IsNotEmpty, IsString } from 'class-validator';
+import {
+  IsEmail,
+  IsNotEmpty,
+  IsString,
+  MaxLength,
+  MinLength,
+} from 'class-validator';
 
 export class RegisterDto {
   @IsNotEmpty()
@@ -11,6 +17,8 @@ export class RegisterDto {
 
   @IsNotEmpty()
   @IsString()
+  @MinLength(7)
+  @MaxLength(15)
   mobile: string;
 
   @IsNotEmpty()
