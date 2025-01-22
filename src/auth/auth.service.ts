@@ -38,7 +38,7 @@ export class AuthService {
     const user = await this.prisma.user.create({ data: registerDto });
 
     const token = await this.jwtService.signAsync({
-      userId: user.id,
+      user_id: user.id,
     });
 
     return { token };
